@@ -6,7 +6,7 @@ const express = require('express'); // routing & request / responses
 const express_session = require('express-session')
 const cors = require('cors'); // cross origin resource sharing (express <-> react)
 const mongoose = require('mongoose'); // mongodb wrapper
-const passport = require('passport')
+const passport = require('passport') // used for session authenticatoin
 
 // --- internal libraries ---
 const { getAllPosts, addPost, deletePost } = require('./post_api');
