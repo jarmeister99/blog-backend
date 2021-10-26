@@ -10,7 +10,7 @@ const PostSchema = new mongoose.Schema({
 const Post = mongoose.model('Post', PostSchema);
 
 const getAllPosts = (req, res) => {
-    Post.find({}).then(result => {
+    Post.find({}).sort({createdOn: 'desc'}).then(result => {
         res.send(result).end();
     }).catch(e => {
         res.status(500).send(e).end();
