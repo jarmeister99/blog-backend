@@ -35,7 +35,6 @@ mongoose.connect(
 
 
 // --- routes ---
-app.get('/api/foobar', (req, res) => res.send('Hello world!!').end());
 
 // posts
 app.get('/api/posts', getAllPosts);
