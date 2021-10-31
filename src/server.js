@@ -46,7 +46,7 @@ app.get('/api/users/user_data', userData)
 app.post('/api/users/register', addUser);
 app.get('/api/users/logout', function (req, res) {
     req.logout();
-    res.redirect('/');
+    res.send(200).end();
 });
 app.post('/api/users/login', function (req, res, next) {
     passport.authenticate('local', function (err, user, info) {
