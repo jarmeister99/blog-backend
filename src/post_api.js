@@ -10,7 +10,7 @@ const PostSchema = new mongoose.Schema({
 const Post = mongoose.model('Post', PostSchema);
 
 const getAllPosts = (req, res) => {
-    Post.find({}).sort({createdOn: 'desc'}).then(result => {
+    Post.find({}).sort({ createdOn: 'desc' }).then(result => {
         res.send(result).end();
     }).catch(e => {
         res.status(500).send(e).end();
@@ -29,6 +29,20 @@ const deletePost = (req, res) => {
         })
     }
 }
+
+const editPost = (req, res) => {
+    if (!req.isAuthenticated()) {
+        res.status(401).end();
+    }
+    else {
+        Post.findByIdAndUpdate(req.body.data._id, {title: req.body.data.title, content: req.body.data.content}).then(resp => {
+            res.status(200).end();
+        }).catch(e => {
+            res.status(400).send(e).end();
+        })
+    }
+}
+
 const addPost = (req, res) => {
     const body = req.body;
     const date = Date.now();
@@ -54,5 +68,5 @@ const addPost = (req, res) => {
 }
 
 module.exports = {
-    getAllPosts, addPost, deletePost
+    getAllPosts, addPost, deletePost, editPost
 }

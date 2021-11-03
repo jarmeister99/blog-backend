@@ -9,7 +9,7 @@ const mongoose = require('mongoose'); // mongodb wrapper
 const passport = require('passport') // used for session authenticatoin
 
 // --- internal libraries ---
-const { getAllPosts, addPost, deletePost } = require('./post_api');
+const { getAllPosts, addPost, deletePost, editPost } = require('./post_api');
 const { addUser, userData, authenticationStrategy } = require('./user_api');
 authenticationStrategy(); // call authentication strategy to prepare passport
 
@@ -40,6 +40,7 @@ mongoose.connect(
 app.get('/api/posts', getAllPosts);
 app.post('/api/posts', addPost);
 app.delete('/api/posts', deletePost);
+app.put('/api/posts', editPost)
 
 // users
 app.get('/api/users/user_data', userData)
